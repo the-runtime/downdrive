@@ -1,37 +1,37 @@
-const button = document.getElementById('extensionButton');
+const button = document.getElementById("extensionButton");
+const htmlstate = document.getElementById("extensionState");
+let popState = false;
 
-// let popState = false
+function setState(val) {
+    chrome.storage.local.set({ state: val }, () => {
+        if (chrome.runtime.lastError) {
+            console.log("Error saving state", browser.runtime.lastError);
+        }
+    });
+}
 
-let popState = false
-
-chrome.runtime.sendMessage({type: "state",val: true}, callback = function (resp){
-  console.log("value of response is " + typeof (resp.value) + resp.value)
-  popState = resp.value
-  if (popState) {
-    button.textContent = "Turn Off"
-  }else {
-    button.textContent = "Turn On"
-  }
-})
-
-
-button.addEventListener('click', async function() {
-  // console.log("hello world" + await getextState())
-  if (popState) {
-    
-    button.textContent = 'Turn On';
-    chrome.runtime.sendMessage({type: "click", val: false})
-    popState = false
-    // chrome.downloads.onCreated.removeListener(handleDownload)
-    
-    // Call your function here when the button is turned on
-    // Function logic goes here
-  } else  {
-    chrome.runtime.sendMessage({type: "click", val: true})
-    popState = true
-    button.textContent = "Turn Off"
-
+chrome.storage.local.get("state").then((val) => {
+    if (val.state) {
+        popState = true;
+        button.textContent = "Turn Off";
+        htmlstate.textContent = "On";
+    } else {
+        popState = false;
+        button.textContent = "Turn On";
+        htmlstate.textContent = "Off";
     }
+});
 
-  }
-);
+button.addEventListener("click", async function () {
+    if (popState) {
+        button.textContent = "Turn On";
+        htmlstate.textContent = "Off";
+        setState(false);
+        popState = false;
+    } else {
+        popState = true;
+        setState(true);
+        button.textContent = "Turn Off";
+        htmlstate.textContent = "On";
+    }
+});

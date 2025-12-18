@@ -1,11 +1,64 @@
+/*h1 {*/
+/*    text-align: center;*/
+/*  }*/
+/*  */
+/*  button {*/
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*    padding: 10px 20px;*/
+/*    font-size: 18px;*/
+/*  }*/
+/**/
+
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     text-align: center;
-  }
-  
-  button {
+    color: #4285f4;
+    margin-top: 40px;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+}
+
+#extensionState {
+    font-weight: bold;
+    color: #3cb371; /* Green color for the extension state */
+}
+
+button {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 10px 20px;
     font-size: 18px;
-  }
-  
+    background-color: #4285f4; /* Google blue color for the button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3367d6; /* Darker blue on hover */
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #4285f4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
